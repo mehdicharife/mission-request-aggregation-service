@@ -1,4 +1,6 @@
-package ma.ensias.a.gl.g1.mission_request_aggregation_service;
+package ma.ensias.a.gl.g1.mission_request_aggregation_service.client;
+
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -8,9 +10,10 @@ import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetAllMissions
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetAllMissionsResponse;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetMissionRequest;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetMissionResponse;
+import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.Mission;
 
 
-public class MissionClient extends WebServiceGatewaySupport {
+public class MissionClientImpl extends WebServiceGatewaySupport {
 
     public GetMissionResponse getMissionById(Long id) {
         GetMissionRequest getMissionRequest = new GetMissionRequest();
@@ -26,16 +29,19 @@ public class MissionClient extends WebServiceGatewaySupport {
         return getMissionResponse;
     }
 
-    public GetAllMissionsResponse getAllMissions() {
+    public List<Mission> getAllMissions() {
         GetAllMissionsRequest getAllMissionsRequest = new GetAllMissionsRequest();
 
         GetAllMissionsResponse response = (GetAllMissionsResponse) getWebServiceTemplate().
             marshalSendAndReceive("http://localhost:8080/ws",
                 getAllMissionsRequest,
                 new SoapActionCallback("http://spring.io/guides/gs-producing-web-service/GetMissionRequest")
-            );
-        return response;
+        );
+
+        return response.getMission();
     }
+
+
 
     
 }
