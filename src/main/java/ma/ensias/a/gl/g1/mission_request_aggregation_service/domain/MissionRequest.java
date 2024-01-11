@@ -1,5 +1,8 @@
 package ma.ensias.a.gl.g1.mission_request_aggregation_service.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MissionRequest {
 
     private Long id;
