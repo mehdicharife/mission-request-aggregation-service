@@ -6,13 +6,13 @@ public class FlattenedMissionRequest {
 
     private Long id;
 
-    private Long requesterId;
+    private Long professorId;
 
     private Date requestDate;
 
     private String state;
 
-    private String requesterFullName;
+    private String professorFullName;
 
     private Long missionId;
 
@@ -42,20 +42,20 @@ public class FlattenedMissionRequest {
         this.requestDate = requestDate;
     }
 
-    public Long getRequesterId() {
-        return this.requesterId;
+    public Long getProfessorId() {
+        return this.professorId;
     }
 
-    public void setRequesterId(Long requesterId) {
-        this.requesterId = requesterId;
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
     }
 
-    public String getRequesterFullName() {
-        return this.requesterFullName;
+    public String getProfessorFullName() {
+        return this.professorFullName;
     }
 
-    public void setRequesterFullName(String requesterFullName) {
-        this.requesterFullName = requesterFullName;
+    public void setProfessorFullName(String professorFullName) {
+        this.professorFullName = professorFullName;
     }
 
     public Long getMissionId() {

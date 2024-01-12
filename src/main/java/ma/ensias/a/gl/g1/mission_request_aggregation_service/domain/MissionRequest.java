@@ -30,15 +30,6 @@ public class MissionRequest {
         this.missionId = missionId;
     }
 
-    public Long getProfessorId() {
-        return this.professorId;
-    }
-
-    public void setProfessorId(Long professorId) {
-        this.professorId = professorId;
-    }
-
-
 
     public String getState() {
         return this.state;
@@ -48,5 +39,23 @@ public class MissionRequest {
         this.state = state;
     }
 
+
+    public Long getProfessorId() {
+        return this.professorId;
+    }
+
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", missionId='" + getMissionId() + "'" +
+            ", professorId='" + getProfessorId() + "'" +
+            ", state='" + getState() + "'" +
+            "}";
+    }
     
 }

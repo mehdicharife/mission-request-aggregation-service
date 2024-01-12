@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.MissionClientImpl;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.RequesterClient;
-import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Requester;
+import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Professor;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetAllMissionsResponse;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.GetMissionResponse;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.Mission;

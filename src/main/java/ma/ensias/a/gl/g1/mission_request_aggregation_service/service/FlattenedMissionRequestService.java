@@ -10,7 +10,7 @@ import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.MissionReque
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.RequesterClient;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.FlattenedMissionRequest;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.MissionRequest;
-import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Requester;
+import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Professor;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.Mission;
 
 
@@ -34,7 +34,7 @@ public class FlattenedMissionRequestService {
         
         List<MissionRequest> missionRequests = missionRequestClient.getAllMissionRequests();
         List<Mission> missions = missionClient.getAllMissions();
-        List<Requester> requesters = requesterClient.getAllRequesters();
+        List<Professor> requesters = requesterClient.getAllRequesters();
 
         return getFlattenedMissionRequestsFrom(missionRequests, missions, requesters);
     }
@@ -42,17 +42,20 @@ public class FlattenedMissionRequestService {
 
     public List<FlattenedMissionRequest> getFlattenedMissionRequestsByRequesterId(Long id) {
         List<MissionRequest> missionRequests = this.missionRequestClient.getMissionRequestsByRequesterId(id);
+        System.out.println(missionRequests);
         List<Mission> missions = missionClient.getAllMissions();
+        System.out.println(missionRequests);
+        System.out.println(missions.size());
         return getFlattenedMissionRequestsFrom(missionRequests, missions);
     }
 
 
-    private List<FlattenedMissionRequest> getFlattenedMissionRequestsFrom(List<MissionRequest> missionRequests, List<Mission> missions, List<Requester> requesters) {
+    private List<FlattenedMissionRequest> getFlattenedMissionRequestsFrom(List<MissionRequest> missionRequests, List<Mission> missions, List<Professor> requesters) {
         List<FlattenedMissionRequest> flattenedMissionRequests = new ArrayList<>();
 
         for(MissionRequest missionRequest: missionRequests) {
             Mission mission = getMissionByIdFromList(missions, missionRequest.getMissionId());
-            Requester requester = getRequesterByIdFromList(requesters, missionRequest.getProfessorId());
+            Professor requester = getRequesterByIdFromList(requesters, missionRequest.getProfessorId());
             FlattenedMissionRequest flattenedMissionRequest = aggregate(missionRequest, mission, requester);
             flattenedMissionRequests.add(flattenedMissionRequest);
         }
@@ -78,11 +81,11 @@ public class FlattenedMissionRequestService {
 
 
 
-    private FlattenedMissionRequest aggregate(MissionRequest missionRequest, Mission mission, Requester requester) {
+    private FlattenedMissionRequest aggregate(MissionRequest missionRequest, Mission mission, Professor professor) {
         FlattenedMissionRequest flattenedMissionRequest = aggregate(missionRequest, mission);
 
-        flattenedMissionRequest.setRequesterId(requester.getId());
-        flattenedMissionRequest.setRequesterFullName(requester.getFullName());
+        flattenedMissionRequest.setProfessorId(professor.getId());
+        flattenedMissionRequest.setProfessorFullName(professor.getFullName());
 
         return flattenedMissionRequest;
     }
@@ -115,8 +118,8 @@ public class FlattenedMissionRequestService {
     }
 
 
-    private Requester getRequesterByIdFromList(List<Requester> requesters, Long id) {
-        for(Requester requester : requesters) {
+    private Professor getRequesterByIdFromList(List<Professor> requesters, Long id) {
+        for(Professor requester : requesters) {
             if(requester.getId() == id) {
                 return requester;
             }

@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Requester;
+import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Professor;
 
 @Component
 public class RequesterClientImpl implements RequesterClient{
@@ -27,7 +27,7 @@ public class RequesterClientImpl implements RequesterClient{
     private String REQUESTER_SERVICE;
 
     
-    public List<Requester> getAllRequesters() {
+    public List<Professor> getAllRequesters() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -61,13 +61,13 @@ public class RequesterClientImpl implements RequesterClient{
 
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Data {
-            List<Requester> allProfessors;
+            List<Professor> allProfessors;
 
-            public List<Requester> getAllProfessors() {
+            public List<Professor> getAllProfessors() {
                 return this.allProfessors;
             }
 
-            public void setAllProfessors(List<Requester> allProfessors) {
+            public void setAllProfessors(List<Professor> allProfessors) {
                 this.allProfessors = allProfessors;
             }
         }
