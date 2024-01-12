@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "mission-request-service",
+  "type": "java.lang.String",
+  "description": "A description for 'mission-request-service'"
+}]}
