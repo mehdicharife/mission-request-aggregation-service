@@ -1,37 +1,27 @@
-package ma.ensias.a.gl.g1.mission_request_aggregation_service.domain;
+package ma.ensias.a.gl.g1.mission_request_aggregation_service.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
-public class FlattenedMissionRequest {
 
-    private Long id;
-
-    private Long professorId;
-
+public class CreateMissionRequestDto {
+    
     private Date requestDate;
 
-    private String state;
-
-    private String professorFullName;
-
-    private Long missionId;
 
     private String missionTitle;
 
+
     private String missionDescription;
+
 
     private Date missionStartDate;
 
+
     private Date missionEndDate;
+    
 
+    private Long professorId;
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
     public Date getRequestDate() {
@@ -40,30 +30,6 @@ public class FlattenedMissionRequest {
 
     public void setRequestDate(Date requestDate) {
         this.requestDate = requestDate;
-    }
-
-    public Long getProfessorId() {
-        return this.professorId;
-    }
-
-    public void setProfessorId(Long professorId) {
-        this.professorId = professorId;
-    }
-
-    public String getProfessorFullName() {
-        return this.professorFullName;
-    }
-
-    public void setProfessorFullName(String professorFullName) {
-        this.professorFullName = professorFullName;
-    }
-
-    public Long getMissionId() {
-        return this.missionId;
-    }
-
-    public void setMissionId(Long missionId) {
-        this.missionId = missionId;
     }
 
     public String getMissionTitle() {
@@ -98,33 +64,25 @@ public class FlattenedMissionRequest {
         this.missionEndDate = missionEndDate;
     }
 
-
-
-    public String getState() {
-        return this.state;
+    public Long getProfessorId() {
+        return this.professorId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
     }
-
 
 
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", professorId='" + getProfessorId() + "'" +
-            ", requestDate='" + getRequestDate() + "'" +
-            ", state='" + getState() + "'" +
-            ", professorFullName='" + getProfessorFullName() + "'" +
-            ", missionId='" + getMissionId() + "'" +
+            " requestDate='" + getRequestDate() + "'" +
             ", missionTitle='" + getMissionTitle() + "'" +
             ", missionDescription='" + getMissionDescription() + "'" +
             ", missionStartDate='" + getMissionStartDate() + "'" +
             ", missionEndDate='" + getMissionEndDate() + "'" +
+            ", professorId='" + getProfessorId() + "'" +
             "}";
     }
 
-    
 }

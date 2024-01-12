@@ -11,6 +11,7 @@ import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.RequesterCli
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.FlattenedMissionRequest;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.MissionRequest;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Professor;
+import ma.ensias.a.gl.g1.mission_request_aggregation_service.mapper.FlattenedMissionRequestMapper;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.Mission;
 
 
@@ -30,6 +31,7 @@ public class FlattenedMissionRequestService {
         this.requesterClient = requesterClient;
     }
     
+    
     public List<FlattenedMissionRequest> getAllFlattenedMissionRequests() {
         
         List<MissionRequest> missionRequests = missionRequestClient.getAllMissionRequests();
@@ -48,6 +50,22 @@ public class FlattenedMissionRequestService {
         System.out.println(missions.size());
         return getFlattenedMissionRequestsFrom(missionRequests, missions);
     }
+
+
+    public FlattenedMissionRequest createFlattenedMissionRequest(FlattenedMissionRequest flattenedMissionRequest) {
+        Mission mission = FlattenedMissionRequestMapper.toMission(flattenedMissionRequest);
+        
+        this.missionClient.createMission(mission);
+
+        MissionRequest missionRequest = FlattenedMissionRequestMapper.toMissionRequest(flattenedMissionRequest, mission.getId());
+        this.missionRequestClient.createMissionRequest(missionRequest);
+
+        flattenedMissionRequest.setMissionId(mission.getId());
+        flattenedMissionRequest.setId(missionRequest.getId());
+
+        return flattenedMissionRequest;
+    }
+
 
 
     private List<FlattenedMissionRequest> getFlattenedMissionRequestsFrom(List<MissionRequest> missionRequests, List<Mission> missions, List<Professor> requesters) {

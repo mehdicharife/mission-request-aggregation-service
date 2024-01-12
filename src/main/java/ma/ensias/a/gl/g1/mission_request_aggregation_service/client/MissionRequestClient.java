@@ -9,5 +9,7 @@ public interface MissionRequestClient {
     List<MissionRequest> getAllMissionRequests();
 
     List<MissionRequest> getMissionRequestsByRequesterId(Long id);
+
+    MissionRequest createMissionRequest(MissionRequest missionRequest);
     
 }

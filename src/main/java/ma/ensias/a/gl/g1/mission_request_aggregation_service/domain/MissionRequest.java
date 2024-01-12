@@ -1,5 +1,8 @@
 package ma.ensias.a.gl.g1.mission_request_aggregation_service.domain;
 
+
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,6 +15,8 @@ public class MissionRequest {
     private Long professorId;
 
     private String state;
+
+    private Date requestDate;
 
 
     public Long getId() {
@@ -46,6 +51,15 @@ public class MissionRequest {
 
     public void setProfessorId(Long professorId) {
         this.professorId = professorId;
+    }
+
+
+    public Date getRequestDate() {
+        return this.requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
     @Override

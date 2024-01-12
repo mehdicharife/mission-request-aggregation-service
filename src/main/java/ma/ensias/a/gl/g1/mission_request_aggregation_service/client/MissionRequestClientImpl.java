@@ -46,4 +46,16 @@ public class MissionRequestClientImpl implements MissionRequestClient {
         return getMissionRequestsResponse.getBody();
     }
     
+
+    public MissionRequest createMissionRequest(MissionRequest missionRequest) {
+        MissionRequest request = this.restTemplate.
+            postForEntity(
+                MISSION_REQUEST_SERVICE,
+                missionRequest, 
+                MissionRequest.class
+        ).getBody();
+
+        missionRequest.setId(request.getId());
+        return missionRequest;
+    }
 }
