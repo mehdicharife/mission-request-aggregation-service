@@ -46,7 +46,6 @@ public class FlattenedMissionRequestService {
         List<MissionRequest> missionRequests = this.missionRequestClient.getMissionRequestsByRequesterId(id);
         System.out.println(missionRequests);
         List<Mission> missions = missionClient.getAllMissions();
-        System.out.println(missionRequests);
         System.out.println(missions.size());
         return getFlattenedMissionRequestsFrom(missionRequests, missions);
     }
