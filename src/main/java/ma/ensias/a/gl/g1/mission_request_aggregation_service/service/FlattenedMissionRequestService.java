@@ -3,6 +3,8 @@ package ma.ensias.a.gl.g1.mission_request_aggregation_service.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.MissionClient;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.MissionRequestClient;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.client.RequesterClient;
@@ -11,13 +13,22 @@ import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.MissionReque
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.domain.Requester;
 import ma.ensias.a.gl.g1.mission_request_aggregation_service.wsdl.Mission;
 
-public class MissionRequestService {
+
+@Service
+public class FlattenedMissionRequestService {
 
     private MissionClient missionClient;
 
     private MissionRequestClient missionRequestClient;
 
     private RequesterClient requesterClient;
+
+
+    public FlattenedMissionRequestService(MissionClient missionClient, MissionRequestClient missionRequestClient, RequesterClient requesterClient) {
+        this.missionClient = missionClient;
+        this.missionRequestClient = missionRequestClient;
+        this.requesterClient = requesterClient;
+    }
     
     public List<FlattenedMissionRequest> getAllFlattenedMissionRequests() {
         

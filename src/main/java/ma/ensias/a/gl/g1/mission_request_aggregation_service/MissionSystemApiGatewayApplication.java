@@ -22,7 +22,7 @@ public class MissionSystemApiGatewayApplication {
 		SpringApplication.run(MissionSystemApiGatewayApplication.class, args);
 	}
 
-	/*
+	
 	@Bean
 	public CommandLineRunner runner(MissionClientImpl missionClient) {
 		return args -> {
@@ -34,14 +34,15 @@ public class MissionSystemApiGatewayApplication {
 			}
 			System.out.println(mission.getMission().getDescription());
 		};
-	}*/
+	}
 
+	/*
 	@Bean
 	public CommandLineRunner runner(RequesterClient requesterClient) {
 		return args -> {
 			List<Requester> requesters = requesterClient.getAllRequesters();
 			System.out.println(requesters);
 		};
-	}
+	}*/
 
 }
